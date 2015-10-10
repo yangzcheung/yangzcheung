@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0; padding: 0; list-style:none;}
+	#div1{
+		height: 200px;
+		width:200px; 
+		background: green;
+		border: 1px solid red;
+		padding: 3px;
+		margin: 5px;
+	}
+	</style>
+	<script>
+	window.onload = function(){
+		var oDiv = document.getElementById('div1');
+		var w = 200;
+		oDiv.onclick = function(){
+			console.log(getComputedStyle(oDiv,false).width);
+		};
+	};
+	Ele.prototype.toggle = function(){
+		
+	}
+	</script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

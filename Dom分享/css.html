@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>css</title>
+<style>
+*{ padding: 0; margin: 0; list-style: none;}
+#div1{ width: 100px; height: 100px; color: #fff; background-color: #000;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	document.onclick = function(ev){
+		alert(ev.clientX);
+	};
+};	
+(function($){
+	$.fn.css = function(){
+		var len = arguments.length;
+		if(len == 1 && (typeof arguments[0] == 'object')){
+			var json = arguments[0];
+			for(var name in json){
+				this.style[name] = json[name];
+			}
+		}else if(len == 2 && (typeof arguments[0] == 'string')){
+			this.style[arguments[0]]=arguments[1];
+		}else if(len == 1 && (typeof arguments[0] == 'string')){
+			return window.getComputedStyle ? getComputedStyle(this,false)[arguments[0]] : this.currentStyle[arguments[0]]
+		}
+ 	};
+ 	$.fn.click = function(fn){
+ 		this.onclick = fn;
+ 	};
+ 	$.fn.on = function(sEv,fn){
+ 		var linstener = fn;
+ 		if(this.addEventListener){
+ 			this.addEventListener(sEv,linstener,false);
+ 		}else{
+ 			this.attachEvent("on"+sEv,linstener);
+ 		}
+ 	};
+ 	$.fn.off = function(){};
+ 	$.fn.hover = function(over,out){
+ 		var overFn = over,
+ 			outFn = out;
+ 		this.onmouseenter = overFn;
+ 		this.onmouseleaver = out;
+ 	}
+})(jQuery)
+
+// jQuery.fn.css = function( name, value ) {
+// 	// Setting 'undefined' is a no-op
+// 	// 两个参数，value为undefined，则不做任何操作，返回this
+// 	// 即如果将一个样式属性设为undefined，不做任何操作
+// 	if ( arguments.length === 2 && value === undefined ) {
+// 		return this;
+// 	}
+// 	// access: function( elems, key, value, exec, fn, pass ) {
+// 	// 调用多功能工具函数jQuery.access，对this进行遍历，并执行参数中的函数
+// 	return jQuery.access( this, name, value, true, function( elem, name, value ) {
+// 		return value !== undefined ?
+// 			jQuery.style( elem, name, value ) : // 设值，包括value是空字符串
+// 			jQuery.css( elem, name ); // 取值
+
+// 	});
+// };
+</script>
+</head>
+<body>
+<div id="div1"></div>	
+</body>
+</html>
