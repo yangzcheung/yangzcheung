@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+div{ position:absolute;left:0;top:0;width:200px; height:200px; margin:10px; background:red;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+
+$(function(){
+	 
+	 var $oDiv = $("#div1");
+	 
+	 $oDiv.mousedown(function(ev){
+		 
+		 var disX = ev.clientX - $oDiv.position().left;
+		 var disY = ev.clientY - $oDiv.position().top;
+		 
+		 function move(ev){
+			 $oDiv.css({
+				left : ev.clientX - disX + "px",
+				top  : ev.clientY - disY + "px"				 
+			 });
+		 }
+		 
+		 function up(){
+			  $(document).unbind("mousemove",move);
+			  $(document).unbind("mouseup",up);
+			  $oDiv[0].releaseCapture && $oDiv[0].releaseCapture();
+		 }
+		 $(document).mousemove(move);
+		 $(document).mouseup(up);
+		 
+		 $oDiv[0].setCapture && $oDiv[0].setCapture();
+		 return false;
+	 });
+	 
+
+});
+
+</script>
+</head>
+
+<body>
+
+dsafsafsa
+<div id="div1"></div>
+dsafsadsfdsa
+</body>
+</html>

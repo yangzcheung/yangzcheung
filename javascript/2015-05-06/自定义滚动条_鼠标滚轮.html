@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{margin:0;padding:0;}
+#div1{ position:relative;width:500px; height:30px; border:1px solid #000; margin:30px auto;}
+#bar{ position:absolute;left:0;top:0;width:50px; height:100%; background:green;}
+#div2{position:relative;width:500px; height:500px;border:1px solid #000;margin:30px auto; overflow:hidden; }
+#wrap{ position:absolute;left:0;top:0;width:100%; overflow:hidden; background:#ccc;}
+</style>
+<script src="addMouseWheel.js"></script>
+<script>
+window.onload = function(){
+	
+	var oBox = document.getElementById("box");
+	var oDiv1 = document.getElementById("div1");
+	var oDiv2 = document.getElementById("div2");
+	var oBar = document.getElementById("bar");
+	var oWrap = document.getElementById("wrap");	
+	
+	addMouseWheel(oBox,function(bDown){
+		
+		var l = oBar.offsetLeft;
+		if(bDown){
+			 l += 10;
+		} else {
+			 l -= 10;
+		}
+		
+		setLeft(l);
+	});
+	
+	oBar.onmousedown = function(ev){
+		var oEvent = ev || event;
+		var disX = oEvent.clientX - oBar.offsetLeft;
+		
+		
+		document.onmousemove = function(ev){
+			 var oEvent = ev || event;
+			 var l  = oEvent.clientX - disX;
+			 setLeft(l);
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			
+			oBar.releaseCapture && oBar.releaseCapture();	
+		};
+		
+		oBar.setCapture && oBar.setCapture();
+		return false;
+	};
+	
+	function setLeft(l){
+		var maxW = oDiv1.offsetWidth - oBar.offsetWidth;
+		if(l < 0){
+			 l = 0;
+		 } else if(l > maxW){
+			 l = maxW;
+		 }
+		 
+		 var scale = l/maxW;
+		 document.title = scale.toFixed(2);
+		 
+		 oWrap.style.top = -scale*(oWrap.offsetHeight - oDiv2.offsetHeight) + "px";
+		 
+		 oBar.style.left = l + "px";
+	}
+	
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+    <div id="div1">
+        <div id="bar"></div>
+    </div>
+    <div id="div2">
+        <div id="wrap">
+          <p><br>
+            var oEvent = ev || event<br>
+            ev 高级浏览器  ie9+<br>
+            event ie系 chrome</p>
+          <p>oEvent.clientX/Y 可视区的坐标 + scrollTop/Left<br>
+          </p>
+          <p>oEvent.keyCode</p>
+          <p>a-z：65-90<br>
+            0-9：48-57<br>
+            enter：13<br>
+            backspace:8<br>
+            方向：37- 40<br>
+            空格：32<br>
+            f12:123<br>
+          </p>
+          <p>冒泡：<br>
+            oEvent.cancelBubble = true;</p>
+          <p>默认事件：系统自带的  return false;</p>
+          <p>捕获：obj.setCapture();<br>
+            释放捕获：obj.releaseCapture();</p>
+          <p>obj.cloneNode(true/false)</p>
+          <p>碰撞检测：判断没有碰到的情况 4种<br>
+          </p>
+          <p>---------------------------------------------</p>
+          <p>事件绑定：一个元素一个事件 添加多个函数</p>
+          <p>//高级浏览器 ie9+<br>
+            addEventListener(事件名 不带on,函数、匿名函数，false);</p>
+          <p>removeEventListener(事件名 不带on,函数、匿名函数，false);</p>
+          <p>&nbsp;</p>
+          <p>//低级浏览器  ie10-<br>
+            attachEvent(事件名带on,函数、匿名函数);<br>
+            detachEvent(事件名带on,函数、匿名函数);</p>
+          <p>事件流： 冒泡 + 事件捕获（事件下沉）<br>
+            false：冒泡<br>
+            true:事件捕获</p>
+          <p>事件捕获 99.99%没用！<br>
+            0.01% 有用！ 面试！<br>
+          </p>
+          <p>解除绑定：  匿名函数不能解绑</p>
+          <p>阻止默认事件：<br>
+            addEventListener();  return false失效 </p>
+          <p>oEvent.preventDefault();  高级浏览器才有</p>
+          <p>低级 return false;</p>
+          <p>-----------------------------------------------<br>
+            this：当前事件发生的对象</p>
+          <p>this常见错误：window<br>
+            1 定时器<br>
+            2 attachEvent<br>
+            3 套了一层<br>
+            4 行间</p>
+          <p>---------------------------------------</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

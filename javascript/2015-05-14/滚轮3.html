@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+body{ height:2000px;}
+div{width:100px; height:100px; background:#ccc; margin:10px;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script src="jquery.addMouseWheel2.js"></script>
+<script>
+$(function(){
+	var $aDiv = $("div");
+	$aDiv.addMouseWheel(function(bDown){
+		var w = $(this).width();
+		if(bDown){
+			w += 10;
+		} else {
+			w -= 10;
+		}
+		$(this).width(w + "px");
+	});
+	
+	 
+	 
+});
+</script>
+</head>
+
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

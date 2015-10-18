@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>title</title>
+<style>
+#div1{width:200px; height:200px; background:red; display:none;}
+</style>
+<script>
+//谁  什么样式
+function getStyle(obj,name){
+	if(obj.currentStyle){
+		return obj.currentStyle[name];
+	} else {
+		return getComputedStyle(obj,false)[name];
+	}
+}
+window.onload = function(){
+	
+	var oBtn = document.getElementById("btn1");
+	var oDiv = document.getElementById("div1");
+	
+	oBtn.onclick = function(){
+		
+		if(getStyle(oDiv,"display") == "none"){
+			oDiv.style.display = "block";
+		} else {
+			oDiv.style.display = "none";
+		}
+		
+		
+		/*if(oDiv.style.display == "none"){
+			oDiv.style.display = "block";
+		} else {
+			oDiv.style.display = "none";
+		}*/
+	};
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="aaa"/>
+
+<div id="div1"></div>
+
+</body>
+</html>

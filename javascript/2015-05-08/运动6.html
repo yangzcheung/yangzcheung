@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+div{ position:absolute;left:0;top:0;width:100px; height:100px; background:red; line-height:100px; font-size:30px; color:#fff; text-align:center; }
+</style>
+<script src="move2.js"></script>
+<script>
+
+window.onload = function(){
+	
+	var aDiv = document.getElementsByTagName("div");
+	
+	document.onclick = function(){
+		move(aDiv[0],{left:600},"linear",1000);
+		move(aDiv[1],{left:600},"ease-in",1000);
+		move(aDiv[2],{left:600},"ease-out",1000);	
+	};	
+};
+
+</script>
+</head>
+
+<body>
+
+<div id="div1" >匀速</div>
+<div id="div2" style="top:250px;">加速</div>
+<div id="div3" style="top:500px;">减速</div>
+
+</body>
+</html>

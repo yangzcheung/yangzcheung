@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html ng-app="app1">
+<head>
+<meta charset="utf-8">
+<title>智能课堂 —— 微博ajax接口测试 - www.zhinengshe.com</title>
+<link href="style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="angular.js"></script>
+<script src="ajax.js"></script>
+<script>
+var app=angular.module('app1', []);
+
+app.controller('test', function ($scope, $http){
+	/*$scope.data=[
+		{content: '试试', time:1433218374, acc: 15, ref: 785}
+	];*/
+	
+	$scope.a=12;
+	
+	/*
+	ajax('weibo.php?act=get&page=1', function (str){
+		var arr=eval('('+str+')');
+		
+		$scope.data=arr;
+	}, function (){
+		alert('失败');
+	});
+	*/
+	
+	$http.get('weibo.php?act=get&page=1').success(function (data){
+		$scope.data=data;
+	});
+});
+
+app.filter('max99', function (){
+	return function (str)
+	{
+		if(str<=99)
+		{
+			return str;
+		}
+		else
+		{
+			return '99+';
+		}
+	};
+});
+app.filter('t2d', function (){
+	return function (str)
+	{
+		var oDate=new Date();
+		oDate.setTime(str*1000);
+		
+		return oDate.getFullYear()+'年'+(oDate.getMonth()+1)+'月'+oDate.getDate()+'日 '+oDate.getHours()+':'+oDate.getMinutes()+':'+oDate.getSeconds();
+	};
+});
+</script>
+</head>
+
+<body ng-controller="test">
+<input type="button" value="aaa" ng-click="a=a+1" />
+{{a}}
+<div class="znsArea">
+<!--留言-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" id="btn1" />
+            <span>(可按 Enter 回复)</span>
+        </div>
+    </div>
+<!--已留-->
+    <div class="commentOn">
+        <div class="noContent" ng-show="data.length==0">暂无留言</div>
+        <div class="messList" id="div_list">
+        	<div class="reply" ng-repeat="item in data">
+                <p class="replyContent">{{item.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{item.time|t2d}}</span>
+                    <span class="handle">
+                    	<a title="{{item.acc}}" href="javascript:;" class="top">{{item.acc|max99}}</a>
+                        <a title="{{item.ref}}" href="javascript:;" class="down_icon">{{item.ref|max99}}</a>
+                        <a href="javascript:;" class="cut">删除</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="page">
+        	<a href="javascript:;" class="active">1</a>
+        	<a href="javascript:;">2</a>
+        	<a href="javascript:;">3</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

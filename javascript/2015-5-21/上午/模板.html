@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#tmp_li {display:none;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oTxt1=document.getElementById('txt1');
+	var oTxt2=document.getElementById('txt2');
+	var oBtn=document.getElementById('btn1');
+	var oTmpLi=document.getElementById('tmp_li');
+	var oUl=document.getElementById('ul1');
+	
+	oBtn.onclick=function ()
+	{
+		var json={name: oTxt1.value, age: oTxt2.value};
+		var oNewLi=oTmpLi.cloneNode(true);
+		oNewLi.removeAttribute('id');
+		
+		oNewLi.innerHTML=oNewLi.innerHTML.replace(/\{\w+\}/g, function (s){
+			s=s.substring(1, s.length-1);
+			
+			return json[s];
+		});
+		
+		oUl.appendChild(oNewLi);
+	};
+};
+</script>
+</head>
+
+<body>
+名字：<input type="text" id="txt1" /><br>
+年龄：<input type="text" id="txt2" /><br>
+<input type="button" value="创建" id="btn1" />
+<ul id="ul1">
+	<li id="tmp_li">我的姓名：<strong>{name}</strong>，我今年<em style="color:red;">{age}</em>岁</li>
+</ul>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,22 @@
+<!doctype html>
+<html ng-app="app1">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module('app1', []);
+
+//app.controller('名字', function (){})
+app.filter('rmb_currency', function (){
+	return function (str){
+		return '￥'+str;
+	};
+});
+</script>
+</head>
+
+<body>
+{{580|rmb_currency}}
+</body>
+</html>

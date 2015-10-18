@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function getByClass(oParent, sClass)
+{
+	if(oParent.getElementsByClassName)
+	{
+		return oParent.getElementsByClassName(sClass);
+	}
+	else
+	{
+		var result=[];
+		var aEle=oParent.getElementsByTagName('*');
+		var re=new RegExp('\\b'+sClass+'\\b');
+		
+		for(var i=0;i<aEle.length;i++)
+		{
+			if(re.test(aEle[i].className))
+			{
+				result.push(aEle[i]);
+			}
+		}
+		
+		return result;
+	}
+}
+
+function _getByStr(aParent, str)
+{
+	var aChild=[];
+	
+	for(var i=0;i<aParent.length;i++)
+	{
+		switch(str.charAt(0))
+		{
+			case '#':
+				var obj=document.getElementById(str.substring(1));
+				
+				aChild.push(obj);
+				break;
+			case '.':
+				var arr=getByClass(aParent[i], str.substring(1));
+				
+				for(var j=0;j<arr.length;j++)
+				{
+					aChild.push(arr[j]);
+				}
+				break;
+			default:
+				//li	li.box	li#li1	li:eq(xxx)	input[value=aaa]
+				//li.box
+				//英文、数字	.	英文、数字、下划线、中划线
+				if(/^[a-z0-9]+\.[\w\-]+$/i.test(str))
+				{
+					var aStr=str.split('.');
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					var re=new RegExp('\\b'+aStr[1]+'\\b');
+					for(var j=0;j<arr.length;j++)
+					{
+						if(re.test(arr[j].className))
+						{
+							aChild.push(arr[j]);
+						}
+					}
+				}
+				//li#li1
+				else if(/^[a-z0-9]+#[\w\-]+$/i.test(str))
+				{
+					var aStr=str.split('#');
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						if(arr[j].id==aStr[1])
+						{
+							aChild.push(arr[j]);
+						}
+					}
+				}
+				//li:has()
+				//英文、数字	:	英文	(任何东西)?
+				else if(/^[a-z0-9]+:[a-z]+(\(.+\))?$/i.test(str))
+				{
+					//str='li:eq(xxx)'
+					var aStr=str.split(/:|\(|\)/);
+					//aStr=['li', 'eq', 'xxx', ]
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					switch(aStr[1])
+					{
+						case 'eq':
+							var n=parseInt(aStr[2]);
+							
+							aChild.push(arr[n]);
+							break;
+						case 'first':
+							aChild.push(arr[0]);
+							break;
+						case 'last':
+							aChild.push(arr[arr.length-1]);
+							break;
+						case 'odd':
+							/*
+							for(var j=0;j<arr.length;j++)
+							{
+								if(j%2==1)
+								{
+									aChild.push(arr[j]);
+								}
+							}
+							*/
+							for(var j=1;j<arr.length;j+=2)
+							{
+								aChild.push(arr[j]);
+							}
+							break;
+						case 'gt':
+							var n=parseInt(aStr[2]);
+							for(var j=n+1;j<arr.length;j++)
+							{
+								aChild.push(arr[j]);
+							}
+							break;
+					}
+				}
+				//input[value=任何]
+				else if(/^[a-z0-9]+\[[\w\-]+=.+\]$/i.test(str))
+				{
+					var aStr=str.split(/\[|=|\]/);
+					//aStr=['input', 'value', '值', ]
+					
+					var arr=aParent[i].getElementsByTagName(aStr[0]);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						if(arr[j].getAttribute(aStr[1])==aStr[2])
+						{
+							aChild.push(arr[j]);
+						}
+					}
+				}
+				//li
+				else
+				{
+					var arr=aParent[i].getElementsByTagName(str);
+					
+					for(var j=0;j<arr.length;j++)
+					{
+						aChild.push(arr[j]);
+					}
+				}
+				break;
+		}
+	}
+	
+	return aChild;
+}
+
+function getEle(str)
+{
+	var arr=str.match(/\S+/g);
+	
+	var aParent=[document];
+	var aChild=[];
+	
+	for(var i=0;i<arr.length;i++)
+	{
+		aChild=_getByStr(aParent, arr[i]);
+		
+		aParent=aChild;
+	}
+	
+	return aChild;
+}
+
+window.onload=function ()
+{
+	var aBox=getEle('  input[type=button]  ');
+	
+	for(var i=0;i<aBox.length;i++)
+	{
+		aBox[i].style.background='red';
+	}
+};
+</script>
+</head>
+
+<body>
+<ul>
+	<li></li>
+	<li id="li1"></li>
+	<li></li>
+	<li id="li1"></li>
+	<li id="li1"></li>
+	<li id="li1"></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li id="li1"></li>
+	<li id="li1"></li>
+</ul>
+
+<div id="div1">
+	<ul>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    	<li class="box active"></li>
+    	<li><input type="button" value="bbb" /></li>
+    </ul>
+	<ol>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    	<li class="box active"></li>
+    	<li><input type="button" value="bbb" /></li>
+    </ol>
+</div>
+<div id="div2">
+	<ul>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    	<li class="box active"></li>
+    	<li><input type="button" value="bbb" /></li>
+    </ul>
+	<ol>
+    	<li class="box"><input type="button" value="aaa" /></li>
+    	<li><input type="text" value="aaa" /></li>
+    	<li class="box active"></li>
+    	<li><input type="button" value="bbb" /></li>
+    </ol>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="addReady.js"></script>
+<script>
+
+$(function(){
+	
+	var oSpan = document.getElementById("s1");
+	var oText = document.getElementById("txt1");
+	
+	//oText.onkeydown = function(){
+	oText.onkeyup = function(){
+		
+		oSpan.innerHTML = this.value.length;	
+	};
+		
+});
+</script>
+</head>
+
+<body>
+<span id="s1"></span>
+<textarea id="txt1" rows="15" cols="80"></textarea>
+
+</body>
+</html>

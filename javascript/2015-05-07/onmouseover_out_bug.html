@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{width:200px; height:200px; background:yellow;}
+#div1 h2{ height:30px; background:green;}
+</style>
+<script src="addReady.js"></script>
+<script>
+$(function(){
+	var oDiv = document.getElementById("div1");
+	
+	
+	oDiv.onmouseover = function(ev){
+		var oEvent = ev || event;
+		// 来源 fromElement relatedTarget
+		//alert(oEvent.fromElement.tagName);
+		//contains
+		
+		var oFrom = oEvent.fromElement || oEvent.relatedTarget;
+		
+		//alert(oEvent.relatedTarget);
+		
+		if(oDiv.contains(oFrom)){
+			return;	
+		}
+		
+		alert("移入");
+		
+		
+	};
+	
+		
+});
+</script>
+</head>
+
+<body>
+
+<div id="div1">
+	<h2>h222222</h2>
+</div>
+
+</body>
+</html>

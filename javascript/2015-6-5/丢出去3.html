@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jsonp.js"></script>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+
+	var speedX=0;
+	var speedY=0;
+
+	var lastX=0;
+	var lastY=0;
+
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+
+		//clearInterval(oDiv.timer);
+
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+
+			//算速度
+			speedX=oDiv.offsetLeft-lastX;
+			speedY=oDiv.offsetTop-lastY;
+
+			lastX=oDiv.offsetLeft;
+			lastY=oDiv.offsetTop;
+		};
+
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+
+			oDiv.releaseCapture && oDiv.releaseCapture();
+
+			//alert(speedX+','+speedY);
+
+			clearInterval(oDiv.timer);
+			oDiv.timer=setInterval(function (){
+				speedX*=0.9;
+				speedY*=0.9;
+
+				oDiv.style.left=oDiv.offsetLeft+speedX+'px';
+				oDiv.style.top=oDiv.offsetTop+speedY+'px';
+			}, 30);
+		};
+
+		oDiv.setCapture && oDiv.setCapture();
+		return false;
+	};
+};
+</script>
+<style>
+#div1 {width: 200px; height: 200px; background: #CCC; position: absolute;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

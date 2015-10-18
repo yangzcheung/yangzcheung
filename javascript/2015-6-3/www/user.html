@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="ajax.js"></script>
+<script>
+window.onload=function ()
+{
+	var oUser=document.getElementById('txt1');
+	var oPass=document.getElementById('txt2');
+	var oBtnLogin=document.getElementById('btn1');
+	var oBtnReg=document.getElementById('btn2');
+	
+	oBtnLogin.onclick=function ()
+	{
+		ajax('user.php?act=login&user='+oUser.value+'&pass='+oPass.value+'&t='+Math.random(), function (str){
+			//alert(str);
+			var json=eval('('+str+')');
+			
+			if(json.ok)
+			{
+				alert('登录成功');
+			}
+			else
+			{
+				alert('失败：'+json.msg);
+			}
+		}, function (){
+			alert('失败');
+		})
+	};
+	
+	oBtnReg.onclick=function ()
+	{
+		ajax('user.php?act=reg&user='+oUser.value+'&pass='+oPass.value+'&t='+Math.random(), function (str){
+			//alert(str);
+			var json=eval('('+str+')');
+			
+			if(json.ok)
+			{
+				alert('注册成功');
+			}
+			else
+			{
+				alert('失败：'+json.msg);
+			}
+		}, function (){
+			alert('失败');
+		})
+	};
+};
+</script>
+</head>
+
+<body>
+用户：<input type="text" id="txt1" /><br>
+密码：<input type="password" id="txt2" /><br>
+<input type="button" value="登录" id="btn1" />
+<input type="button" value="注册" id="btn2" />
+</body>
+</html>
+
+
+
+

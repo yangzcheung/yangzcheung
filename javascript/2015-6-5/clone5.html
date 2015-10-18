@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function clone(obj)
+{
+	if(obj instanceof Array)
+	{
+		var result=[];
+
+		for(var i=0;i<obj.length;i++)
+		{
+			result[i]=clone(obj[i]);
+		}
+
+		return result;
+	}
+	else if(obj.constructor==Object)
+	{
+		var result={};
+
+		for(var i in obj)
+		{
+			result[i]=clone(obj[i]);
+		}
+
+		return result;
+	}
+	else
+	{
+		return obj;
+	}
+}
+
+var a=[12, 5, {a: 12, b: 66, c: [5, 8]}];
+
+var b=clone(a);
+
+b[2].c.push(99);
+
+console.log(a, b);
+</script>
+</head>
+
+<body>
+	
+</body>
+</html>

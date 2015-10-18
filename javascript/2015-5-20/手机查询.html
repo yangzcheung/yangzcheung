@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jsonp.js"></script>
+<script>
+window.onload=function ()
+{
+	var oTxt=document.getElementById('txt1');
+	var oBtn=document.getElementById('btn1');
+	var oS1=document.getElementById('s1');
+	var oS2=document.getElementById('s2');
+	var oS3=document.getElementById('s3');
+	
+	var url='http://virtual.paipai.com/extinfo/GetMobileProductInfo';
+	
+	oBtn.onclick=function ()
+	{
+		jsonp(url, {mobile: oTxt.value, amount: '10000'}, 'callname', function (json){
+			oS1.innerHTML=json.province;
+			oS2.innerHTML=json.cityname;
+			oS3.innerHTML=json.isp;
+		});
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="text" id="txt1" />
+<input type="button" value="查" id="btn1" /><br>
+省份：<span id="s1"></span><br>
+城市：<span id="s2"></span><br>
+运营商：<span id="s3"></span><br>
+</body>
+</html>
+
+
+
+
+
+
+

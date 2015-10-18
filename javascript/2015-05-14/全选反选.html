@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+window.onload = function(){
+	
+	var $oSelectAll = $("#selectAll");
+	var $oUnSelectAll = $("#unSelectAll");
+	var $oReverse = $("#reverse");
+	var $oDiv = $("#box"); 
+	var $aInput = $oDiv.find("input[type=checkbox]");
+	
+	//反选
+ 	$oReverse.click(function(){
+		/*for(var i = 0; i < $aInput.length; i++){
+			$aInput[i].checked = !$aInput[i].checked;
+		}*/
+		
+		$aInput.each(function() {
+            //this.checked = !this.checked;
+			
+			$(this).attr("checked",!$(this).attr("checked"));
+        });
+	});
+	
+	//不选 checked ---> false
+ 	$oUnSelectAll.click(function(){
+		 $aInput.attr("checked",false);
+	});
+	
+	//全选 checked ---> true
+	 $oSelectAll.click(function(){
+		 $aInput.attr("checked",true);
+	 });
+	
+};
+
+</script>
+</head>
+
+<body>
+
+<input id="selectAll" type="button" value="全选" />
+<input id="unSelectAll" type="button" value="不选" />
+<input id="reverse" type="button" value="反选" />
+<hr />
+
+<div id="box">
+    <input type="checkbox"  /><br />
+    <input type="checkbox"  /><br />
+    <input type="checkbox"  /><br />
+    <input type="checkbox"  /><br />
+    <input type="checkbox"  /><br />
+</div>
+</body>
+</html>

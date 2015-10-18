@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+body{ height:2000px;}
+#div1{ position:absolute;left:0;top:0;width:200px; height:200px; background:#ccc;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+$(function(){
+ 	
+	var $oDiv = $("#div1");
+	
+	var oDiv = document.getElementById("div1");
+	
+	addMouseWheel(oDiv,function(bDown){
+		var h = oDiv.offsetHeight;
+		if(bDown){
+			h += 10;
+		} else {
+			h -= 10;
+		}
+		oDiv.style.height = h + "px";
+	})
+	
+	function addMouseWheel(obj,fn){
+		
+		if(window.navigator.userAgent.toLowerCase().indexOf("firefox") != -1){
+			obj.addEventListener("DOMMouseScroll",fnWheel,false);
+		} else {
+			obj.onmousewheel = fnWheel	
+		}
+		
+		function fnWheel(ev){
+			var oEvent = ev || event;	
+			var bDown = true;
+			/*
+				ie  chrome   wheelDelta 上 120 下 -120
+				ff   detail    上 -3  下3
+			
+			*/
+			
+			if(oEvent.wheelDelta){
+				bDown = oEvent.wheelDelta > 0 ? false : true;
+			} else {
+				bDown = oEvent.detail > 0 ? true : false; 
+			}
+			
+			fn && fn(bDown);
+			oEvent.preventDefault && oEvent.preventDefault();
+			return false;
+		}
+		
+		
+	}
+	
+		
+	
+});
+</script>
+</head>
+
+<body>
+
+<div id="div1">
+	
+</div>
+
+</body>
+</html>

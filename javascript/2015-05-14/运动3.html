@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ position:absolute;left:0;top:0;width:200px; height:200px; background:red;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script src="move.js"></script>
+<script>
+
+window.onload = function(){
+	
+	//jq  linear  swing 
+	var oDiv = document.getElementById("div1");	
+	var timer = null;
+	
+	var fx = Tween.Bounce.easeOut;
+	var fx = Tween.Elastic.easeOut;
+	var fx = Tween.Elastic.easeIn;
+	var fx = Tween.Elastic.easeInOut;
+	
+	oDiv.onclick = function(){
+	
+		move(this,{left:900},{easing:fx});
+		
+	}
+};
+
+</script>
+</head>
+
+<body>
+
+<div id="div1"></div>
+
+</body>
+</html>

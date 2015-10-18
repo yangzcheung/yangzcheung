@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+.box input {background:#CCC;}
+.box input.active {background:yellow;}
+.box div {width:200px; height:200px; background:#CCC; display:none;}
+.box div.cur {display:block;}
+</style>
+<script>
+function TabSwitch(id)
+{
+	var _this=this;
+	var oDiv=document.getElementById(id);
+	
+	this.aBtn=oDiv.getElementsByTagName('input');
+	this.aDiv=oDiv.getElementsByTagName('div');
+	
+	for(var i=0;i<this.aBtn.length;i++)
+	{
+		this.aBtn[i].index=i;
+		this.aBtn[i].onclick=function ()
+		{
+			_this.fnClick(this);
+		};
+	}
+}
+
+TabSwitch.prototype.fnClick=function (oBtn)
+{
+	for(var i=0;i<this.aBtn.length;i++)
+	{
+		this.aBtn[i].className='';
+		this.aDiv[i].className='';
+	}
+	oBtn.className='active';
+	this.aDiv[oBtn.index].className='cur';
+};
+
+window.onload=function ()
+{
+	new TabSwitch('div1');
+};
+</script>
+</head>
+
+<body>
+<div id="div1" class="box">
+	<input type="button" value="aaa" class="active" />
+	<input type="button" value="bbb" />
+	<input type="button" value="ccc" />
+    <div class="cur">asdfasfasd</div>
+    <div>3235rwefs</div>
+    <div>fvxcvbxgb</div>
+</div>
+</body>
+</html>

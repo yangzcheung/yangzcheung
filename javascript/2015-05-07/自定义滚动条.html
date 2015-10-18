@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{margin:0;padding:0; list-style:none;}
+#box{ position:relative;width:400px; height:600px; overflow:hidden; border:1px solid #000;  margin:20px auto;}
+#scroll{ position:absolute;right:0;top:20px; width:20px; height:560px;;   background:#ccc;}
+#bar{ position:absolute;left:0;top:0;width:100%; height:50px; background:green}
+#prev{position:absolute;left:0;top:-20px;width:100%; height:20px;background:red; text-align:center;}
+#next{position:absolute;left:0;bottom:-20px;width:100%; background:red;height:20px; text-align:center;}
+#content{ position:relative;width:380px; height:100%; background:yellow;overflow:hidden}
+#wrap{ position:absolute;left:0;top:0;width:100%; overflow:hidden;}
+</style>
+<script src="addReady.js"></script>
+<script src="addMouseWheel.js"></script>
+<script>
+
+$(function(){
+	
+	var oBox = document.getElementById("box");
+	var oScroll = document.getElementById("scroll");
+	var oPrev = document.getElementById("prev");
+	var oNext = document.getElementById("next");
+	var oBar  = document.getElementById("bar");
+	var oCon  = document.getElementById("content");
+	var oWrap = document.getElementById("wrap");
+	
+	addMouseWheel(oBox,function(bDown){
+		var t = oBar.offsetTop;
+		
+		if(bDown){
+			t += 10;
+		} else {
+			t -= 10;
+		}
+		setTop(t);
+	});
+	
+	
+	
+	oBar.onmousedown = function(ev){
+		var oEvent = ev || event;
+		var disY = oEvent.clientY - oBar.offsetTop;
+		
+		document.onmousemove = function(ev){
+			var oEvent = ev || event;
+			var t = oEvent.clientY - disY;
+			
+			setTop(t);
+		};
+		
+		
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			
+			oBar.releaseCapture && oBar.releaseCapture();
+		};
+		
+		
+		oBar.setCapture && oBar.setCapture();
+		return false;	
+	};
+	
+	function setTop(t){
+		var maxH = oScroll.offsetHeight - oBar.offsetHeight;
+		if(t < 0){
+			t = 0;
+		} else if(t > maxH){
+			t = maxH;
+		}
+		
+		var scale = t/maxH;
+		
+		oWrap.style.top = -scale*(oWrap.offsetHeight - oCon.offsetHeight) + "px";
+		oBar.style.top = t + "px";
+	}
+	
+		
+});
+
+</script>
+</head>
+
+<body>
+
+<div id="box">
+	<div id="scroll">
+    	<a href="javascript:;" id="prev">↑</a>
+    	<a href="javascript:;" id="next">↓</a>
+        <div id="bar"></div>
+    </div>
+    <div id="content">
+    	<div id="wrap">
+        
+        <p>他强调，要教育引导各级领导干部自觉用&ldquo;四个全面&rdquo;战略布局统一思想，正确把握改革大局，从改革大局出发看待利益关系调整，只要对全局改革有利、对党和国家事业发展有利、对本系统本领域形成完善的体制机制有利，都要自觉服从改革大局、服务改革大局，勇于自我革命，敢于直面问题，共同把全面深化改革这篇大文章做好。</p>
+<p>　　中共中央政治局常委、中央全面深化改革领导小组副组长李克强、刘云山、张高丽出席会议。</p>
+<p>　　会议审议通过了《关于在部分区域系统推进全面创新改革试验的总体方案》、《检察机关提起公益诉讼改革试点方案》、《关于完善法律援助制度的意见》、《深化科技体制改革实施方案》、《中国科协所属学会有序承接政府转移职能扩大试点工作实施方案》。</p>
+<p>　　会议指出，在部分区域系统推进全面创新改革试验，要以推动科技创新为核心，以破除体制机制障碍为主攻方向，开展系统性、整体性、协同性改革的先行先试，加快形成我国经济社会发展的新引擎，为建设创新型国家提供强有力支撑。</p>
+<p>　　会议强调，党的十八届四中全会提出探索建立检察机关提起公益诉讼制度，目的是充分发挥检察机关法律监督职能作用，促进依法行政、严格执法，维护宪法法律权威，维护社会公平正义，维护国家和社会公共利益。要牢牢抓住公益这个核心，重点是对生态环境和资源保护、国有资产保护、国有土地使用权出让、食品药品安全等领域造成国家和社会公共利益受到侵害的案件提起民事或行政公益诉讼，更好维护国家利益和人民利益。</p>
+<p>　　会议指出，法律援助工作是一项重要的民生工程，要把维护人民群众合法权益作为出发点和落脚点，要适应困难群众的民生需求，降低门槛，帮助困难群众运用法律手段解决基本生产生活方面的问题。要通过法律援助将涉及困难群体的矛盾纠纷纳入法治化轨道解决，有效化解社会矛盾，维护和谐稳定。</p>
+<p>　　会议强调，为打通科技创新与经济社会发展的通道，最大限度激发科技创新的巨大潜能，制定深化科技体制改革实施方案非常重要。要力争到2020年在科技体制改革的重要领域和关键环节上取得突破性成果，基本建立适应创新驱动发展战略要求、符合社会主义市场经济规律、科技创新发展规律的国家创新体系。</p>
+<p>　　会议指出，中国科协所属学会有序承接政府转移职能扩大试点工作，要尽快形成可复制可推广的经验模式。</p>
+<p>　　会议同意山西、内蒙古、黑龙江、江苏、浙江、安徽、福建、山东、重庆、云南、宁夏开展推进司法责任制、司法人员分类管理、司法人员职业保障、省以下地方法院检察院人财物统一管理等4项改革试点。</p>
+<p>　　会议强调，思想是行动的先导，要高度重视做好思想政治工作，改革推进到哪一步，思想政治工作就要跟进到哪一步，有的放矢开展思想政治工作，引导大家争当改革促进派。要高度重视全面深化改革引起的利益关系调整，通盘评估改革实施前、实施中、实施后的利益变化，统筹各方面各层次利益，分类指导，分类处理。要着力强化敢于担当、攻坚克难的用人导向，把那些想改革、谋改革、善改革的干部用起来，激励干部勇挑重担。</p>
+
+        
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

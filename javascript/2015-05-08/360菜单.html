@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#ul1{width:510px; margin:30px auto;}
+#ul1 li{ position:relative;float:left;width:100px; height:30px; line-height:30px; text-align:center; border:1px solid #000; overflow:hidden;}
+#ul1 li span{ position:absolute;left:0;bottom:-30px;width:100%; height:30px; z-index:-1;}
+</style>
+<script src="move3.js"></script>
+<script>
+
+window.onload = function(){
+	
+	var oUl = document.getElementById("ul1");
+	var aLi = oUl.children;
+	
+	for(var i = 0; i < aLi.length; i++){
+		aLi[i].onmouseover = function(){
+			var oSpan = this.getElementsByTagName("span")[0];
+			move(oSpan,{bottom:0});
+		};
+		
+		aLi[i].onmouseout = function(){
+			var oSpan = this.getElementsByTagName("span")[0];
+			move(oSpan,{bottom:-30});
+		};
+	}
+		
+};
+
+</script>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li>菜单一<span style="background:#03F;"></span></li>
+	<li>菜单二<span style="background:#30F;"></span></li>
+	<li>菜单三<span style="background:#0F3;"></span></li>
+	<li>菜单四<span style="background:#0F3;"></span></li>
+	<li>菜单五<span style="background:#0FF;"></span></li>
+</ul>
+
+</body>
+</html>

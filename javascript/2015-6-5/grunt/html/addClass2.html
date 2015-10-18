@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+function addClass(obj, sClass)
+{
+	//改进：判断有没有
+	var re=new RegExp('\\b'+sClass+'\\b');
+	
+	if(obj.className.search(re)==-1)
+	{
+		if(obj.className)
+		{
+			obj.className+=' '+sClass;
+		}
+		else
+		{
+			obj.className=sClass;
+		}
+	}
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	addClass(oDiv, 'aaa');
+};
+</script>
+</head>
+
+<body>
+<div id="div1" class="aa bb cc"></div>
+</body>
+</html>

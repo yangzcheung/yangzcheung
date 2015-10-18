@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body {background:black; text-align:center;}
+#c1 {background:white;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oC=document.getElementById('c1');
+	
+	//图形上下文——绘图接口
+	var gd=oC.getContext('2d');
+	
+	//路径——PS的选区
+	gd.moveTo(426, 58);
+	gd.lineTo(667, 156);
+	gd.lineTo(616, 378);
+	gd.lineTo(139, 348);
+	gd.lineTo(426, 58);
+	
+	//gd.strokeStyle='red';
+	//gd.stroke();
+	
+	gd.fillStyle='#F40';
+	gd.fill();
+};
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

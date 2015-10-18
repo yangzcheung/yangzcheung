@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ position:absolute;left:300px; top:200px; width:200px; height:200px; background:#ccc; line-height:200px; text-align:center; overflow:hidden;}
+#div1 span{ position:absolute;left:-200px; top:0; width:200px; height:200px; background:pink; font-size:30px;}
+</style>
+<script src="move.js"></script>
+<script>
+
+window.onload = function(){
+	
+	var oDiv = document.getElementById("div1");
+	var oSpan = oDiv.children[0];
+	
+	function direction(oEvent){
+				
+		var x = oEvent.clientX - oDiv.offsetLeft - oDiv.offsetWidth/2;
+		var y = oDiv.offsetHeight/2 + oDiv.offsetTop -  oEvent.clientY;
+		
+		var a = Math.atan2(y,x);
+		
+		// 0 左  1下 2 右 3 上
+		
+		return Math.round((a*180/Math.PI + 180)/90)%4;	
+	}
+	
+	oDiv.onmouseover = function(ev){
+		
+		var oEvent = ev || event;
+		var oSrc = oEvent.formElememnt || oEvent.relatedTarget;
+		
+		if(oDiv.contains(oSrc)){
+			return;
+		}
+		
+		var n = direction(oEvent);
+		
+		switch(n){
+		 	case 0:// 0 左 
+			oSpan.style.left = "-200px";
+			oSpan.style.top = "0";
+			break;
+		 	case 1://  1下
+			oSpan.style.left = "0";
+			oSpan.style.top = "200px";
+			break;
+		 	case 2://  2 右 
+			oSpan.style.left = "200px";
+			oSpan.style.top = "0";
+			break;
+		 	case 3:// 3 上
+			oSpan.style.left = "0";
+			oSpan.style.top = "-200px";
+			break;
+		}
+		
+		move(oSpan,{left:0,top:0});
+	};
+	
+	oDiv.onmouseout = function(ev){
+		
+		var oEvent = ev || event;
+		var oTo = oEvent.toElememnt || oEvent.relatedTarget;
+		
+		if(oDiv.contains(oTo)){
+			return;
+		}
+		var n = direction(oEvent);
+		
+		switch(n){
+		 	case 0:
+				move(oSpan,{left:-200,top:0});
+			break;
+		 	case 1:
+			 move(oSpan,{left:0,top:200});
+			break;
+		 	case 2:
+			 move(oSpan,{left:200,top:0});
+			break;
+		 	case 3:
+			  move(oSpan,{left:0,top:-200});
+			break;
+		}
+	};
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<span>span</span>
+</div>
+
+</body>
+</html>

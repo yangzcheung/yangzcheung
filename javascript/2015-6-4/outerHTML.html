@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+function getOuterHTML(obj)
+{
+	if(obj.outerHTML)
+		return obj.outerHTML;
+	
+	var oTmp=document.createElement('div');
+
+	oTmp.appendChild(obj.cloneNode(true));
+
+	return oTmp.innerHTML;
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+
+	alert(getOuterHTML(oDiv));
+
+	//alert(oDiv.outerHTML);
+};
+</script>
+</head>
+
+<body>
+	<div id="div1">
+		<h2>asdfasdfasdfsa</h2>
+		<p>xcvzxcv</p>
+	</div>
+</body>
+</html>

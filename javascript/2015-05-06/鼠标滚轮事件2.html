@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{width:200px; height:200px; background:#ccc;}
+</style>
+<script>
+
+window.onload = function(){
+	
+	var oDiv = document.getElementById("div1");
+	
+	// onmousewheel  ie chrome 
+	
+	oDiv.onmousewheel = function(ev){
+		var oEvent = ev || event;
+		
+		/*
+			上 120
+			下 -120
+		*/
+		alert(oEvent.wheelDelta);	
+	};
+	
+	//ff  DOMMouseScroll  DOM事件必须绑定
+	
+	oDiv.addEventListener("DOMMouseScroll",function(ev){
+		var oEvent = ev || event;
+		/*
+			上 -3
+			下 3
+		*/
+		alert(oEvent.detail);	
+		
+	},false);
+		
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

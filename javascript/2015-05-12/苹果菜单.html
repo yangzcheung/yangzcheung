@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#div1{ position:absolute;left:0;bottom:0;width:100%; text-align:center;}
+
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	var aImg = oDiv.children;
+	var aInput = document.getElementsByTagName("input");
+	document.onmousemove = function(ev){
+		var oEvent = ev || event;
+		var x1 = oEvent.clientX;
+		var y1 = oEvent.clientY;
+		for(var i = 0; i < aImg.length; i++){
+			var x2 = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y2 = aImg[i].offsetTop + aImg[i].offsetHeight/2 + oDiv.offsetTop;
+			var a = x1 - x2;
+			var b = y1 - y2;
+			var dis = Math.sqrt(a*a + b*b);
+			var scale = 1 - dis/300;
+			if(scale < 0.5){
+				scale = 0.5;
+			}
+			aInput[i].value = scale.toFixed(2);
+			aImg[i].width = scale*128;
+		}
+	};
+};
+
+</script>
+</head>
+
+<body>
+
+<input type="text"/>
+<input type="text"/>
+<input type="text"/>
+<input type="text"/>
+<input type="text"/>
+
+<div id="div1">
+
+<img src="images/1.png" width="64" />
+<img src="images/2.png" width="64" />
+<img src="images/3.png" width="64" />
+<img src="images/4.png" width="64" />
+<img src="images/5.png" width="64" /> 
+
+</div>
+
+</body>
+</html>

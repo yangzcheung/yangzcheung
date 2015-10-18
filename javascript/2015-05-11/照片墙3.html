@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{marigin:0;padding:0;list-style:none;}
+#ul1{ position:relative;width:510px; height:510px; margin:30px auto;}
+#ul1 li{float:left;width:150px; height:150px; margin:10px; }
+#ul1 li img{width:100%; height:100%;}
+.box{ border:4px dashed red;}
+</style>
+<script src="move.js"></script>
+<script>
+window.onload = function(){
+	
+	var oBtn = document.getElementById("btn1");
+	var oUl = document.getElementById("ul1");
+	var aLi = oUl.children;
+	var zIndex = 1;
+	
+	//随机一换
+	var bClick=false;
+	oBtn.onclick = function(){
+		
+		if(bClick) return;
+		bClick=true;
+		aPos.sort(function(){
+			return Math.random() - 0.5;	
+		});	
+		
+		for(var i = 0; i < aLi.length; i++){
+			move(aLi[i],aPos[i],{complete:function(){
+				if(i==aLi.length){
+					bClick=false;
+				}
+			}});
+		}
+		
+	};
+	
+	//布局转换
+	var aPos = [];
+	for(var i = 0; i < aLi.length; i++){
+		aPos[i] = {left:aLi[i].offsetLeft, top: aLi[i].offsetTop};
+		aLi[i].style.left = aPos[i].left + "px";
+		aLi[i].style.top  = aPos[i].top  + "px";
+	}
+	
+	for(var i = 0; i < aLi.length; i++){
+		
+		aLi[i].style.position = "absolute";
+		aLi[i].style.margin  = "0";
+		aLi[i].index = i;
+		drag(aLi[i]);
+	}
+	
+	
+	function drag(obj){
+		
+		obj.onmousedown = function(ev){
+			var oEvent = ev || event;
+			var disX = oEvent.clientX - obj.offsetLeft;
+			var disY = oEvent.clientY - obj.offsetTop;
+			
+			obj.style.zIndex = zIndex++;
+			clearInterval(obj.timer);
+			
+			document.onmousemove = function(ev){
+				var oEvent = ev || event;
+				
+				obj.style.left = oEvent.clientX - disX + "px";
+				obj.style.top  = oEvent.clientY - disY + "px";
+				
+				
+				for(var i = 0; i < aLi.length; i++){
+					aLi[i].className = "";
+				}
+				
+				//碰撞检测
+				var oNear = findMin(obj);
+				
+				oNear &&　(oNear.className = "box");
+				
+				
+			};
+			
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				obj.releaseCapture && obj.releaseCapture();
+				
+				//鼠标抬起换位置
+				var oNear = findMin(obj);
+				
+				if(oNear){
+					/*
+					obj ---> oNear
+					oNear ---> obj
+					*/
+					var tmp = obj.index;
+					obj.index = oNear.index;
+					oNear.index = tmp;
+					move(oNear,aPos[oNear.index]);
+				}
+				//没碰上
+				move(obj,aPos[obj.index]);
+				
+			};
+			
+			obj.setCapture && obj.setCapture();
+			return false;	
+		};
+	}
+	
+	
+	function getDis(obj1,obj2){
+		
+		var a = obj1.offsetLeft - obj2.offsetLeft;
+		var b = obj1.offsetTop - obj2.offsetTop;
+		
+		return Math.sqrt(a*a + b*b);
+	}
+	
+	
+	// 1 碰上  2 算距离
+	function findMin(obj){
+		
+		var iMin = 9999999;
+		var iMinIndex = -1;
+		
+		for(var i = 0; i < aLi.length; i++){
+			//1 碰上 
+			if(obj == aLi[i]) continue;
+			if(collTest(obj,aLi[i])){
+				//2 算距离
+				var dis = getDis(obj,aLi[i]);
+				
+				if(iMin > dis){
+					iMin = dis;
+					iMinIndex = i;
+				}
+			}
+		}
+		if(iMinIndex == -1){
+			return null;
+		}
+		
+		return aLi[iMinIndex];
+		
+	}
+	
+	
+	function collTest(obj1,obj2){
+		var l1 = obj1.offsetLeft;
+		var t1 = obj1.offsetTop;
+		var r1 = l1 + obj1.offsetWidth;
+		var b1 = t1 + obj1.offsetHeight;
+		
+		var l2 = obj2.offsetLeft;
+		var t2 = obj2.offsetTop;
+		var r2 = l2 + obj2.offsetWidth;
+		var b2 = t2 + obj2.offsetHeight;
+		
+		if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){//没有碰到
+			return false;
+		} else {
+			return true;
+		}
+	}
+		
+	
+};
+</script>
+</head>
+
+<body>
+
+<input id="btn1" type="button" value="随机一换" />
+
+<ul id="ul1">
+	<li><img src="cat/1.jpg" /></li>
+	<li><img src="cat/2.jpg" /></li>
+	<li><img src="cat/3.jpg" /></li>
+	<li><img src="cat/4.jpg" /></li>
+	<li><img src="cat/5.jpg" /></li>
+	<li><img src="cat/6.jpg" /></li>
+	<li><img src="cat/7.jpg" /></li>
+	<li><img src="cat/8.jpg" /></li>
+	<li><img src="cat/9.jpg" /></li>
+</ul>
+
+</body>
+</html>

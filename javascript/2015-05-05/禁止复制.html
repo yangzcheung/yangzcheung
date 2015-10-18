@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+</style>
+<script>
+
+window.onload = function(){
+	document.oncontextmenu = function(){
+		return false;	
+	};
+	
+	document.onkeydown = function(ev){
+		var oEvent = ev || event;
+		
+		//alert(oEvent.keyCode);
+		// c 67
+		if(oEvent.keyCode == 67 && oEvent.ctrlKey ){
+			return false;
+		}	
+		
+		// f12 123
+		if(oEvent.keyCode == 123){
+			return false;
+		}
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1">新华社北京5月4日电 外交部发言人陆慷4日宣布，应哈萨克斯坦共和国总统纳扎尔巴耶夫邀请，国家主席习近平将于7日访问哈萨克斯坦。</div>
+</body>
+</html>

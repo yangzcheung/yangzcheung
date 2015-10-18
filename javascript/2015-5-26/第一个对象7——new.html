@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+//工厂：原料、加工、产品
+function createPerson(name, age)
+{
+	//原料
+	var obj=new Object();
+	
+	//加工
+	obj.name=name;
+	obj.age=age;
+	
+	obj.showName=function ()
+	{
+		alert('我叫：'+this.name);
+	};
+	obj.showJob=function ()
+	{
+		alert('我今年：'+this.age);
+	};
+	
+	//产品
+	return obj;
+}
+
+var obj=createPerson('blue', 18);
+
+obj.showName();
+obj.showJob();
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

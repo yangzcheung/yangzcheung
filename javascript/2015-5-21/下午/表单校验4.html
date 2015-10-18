@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+input {border:1px solid #CCC; outline:none;}
+input.ok {border:1px solid green;}
+input.err {border:1px solid red;}
+
+.box {line-height:20px;}
+.box span {font-size:12px; color:red; padding-left:10px; display:none;}
+</style>
+<script src="form.js"></script>
+<script>
+window.onload=function ()
+{
+	checkForm('form1');
+};
+</script>
+</head>
+
+<body>
+<form id="form1" action="http://www.zhinengshe.com/">
+	邮箱：<span class="box"><input type="text" name="email" /><span>邮箱必须是符合要求</span></span><br>
+	年龄：<span class="box"><input type="text" name="age" /><span>年龄必须是18-100</span></span><br>
+	姓名：<span class="box"><input type="text" name="name" /><span>您懂得</span></span><br>
+	<input type="submit" />
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+

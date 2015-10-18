@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="jquery-1.7.2.js"></script>
+<script>
+$(function (){
+	
+	function show(){
+		alert(1);	
+	}
+	
+	/*
+	$("#btn1").click(show);
+	$("#btn1").click(show);
+	*/
+	//addEvent(obj,sEv,fn);
+	$("#btn1").bind("click",show);
+	$("#btn1").bind("click",show);
+	
+});
+</script>
+</head>
+
+<body>
+<input type="button" value="按钮" id="btn1" />
+</body>
+</html>

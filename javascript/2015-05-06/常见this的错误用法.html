@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+
+<script>
+function show(){
+	alert(this);	
+}
+	
+window.onload = function(){
+	
+	
+	var aBtn = document.getElementsByTagName("input");
+	
+	aBtn[0].onclick = show;//oBtn
+	
+	aBtn[1].onclick = function(){//window
+		show();	
+	};
+	aBtn[2].onclick = function(){//window
+		setTimeout(show,1000);
+	};
+	aBtn[aBtn.length - 1].attachEvent("onclick",show);//window
+};
+
+</script>
+</head>
+
+<body>
+ 
+<input type="button" value="按钮一" />
+<input type="button" value="按钮二" />
+<input type="button" value="按钮三" />
+<input type="button" value="按钮四" onclick="show();" /><!--window-->
+<input type="button" value="按钮五" />
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{width:200px; height:200px; border:2px solid red; padding:10px; margin:20px; background:#ccc;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+
+$(function(){
+	
+	var $oDiv = $("#div1");
+	
+	alert(
+		"width:" + $oDiv.width() + "\n" +//200  width
+		"innerWidth:" + $oDiv.innerWidth() + "\n" +//220 width+padding
+		"outerWidth:" + $oDiv.outerWidth()//224 盒模型
+	);	
+
+});
+
+</script>
+</head>
+
+<body>
+
+<div id="div1"></div>
+
+
+</body>
+</html>

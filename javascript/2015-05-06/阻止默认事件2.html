@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+
+<script>
+
+addEvent(document,"contextmenu",function(ev){
+	var oEvent = ev || event;
+	
+	oEvent.preventDefault && oEvent.preventDefault();
+	
+	return false;
+});
+
+function addEvent(obj,sEv,fn){
+	
+	if(obj.addEventListener){
+		obj.addEventListener(sEv,fn,false);
+	} else {
+		obj.attachEvent("on" + sEv,fn);
+	}
+}
+
+ 
+</script>
+</head>
+
+<body>
+
+
+</body>
+</html>

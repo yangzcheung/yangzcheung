@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{width:200px; height:200px; background:#ccc;}
+</style>
+<script>
+
+window.onload = function(){
+	
+	var oDiv = document.getElementById("div1");
+	
+	
+	function changeH(bDown){
+		
+		if(bDown){
+			oDiv.style.height = oDiv.offsetHeight + 10 + "px";
+		} else {
+			oDiv.style.height = oDiv.offsetHeight - 10 + "px";
+		}
+				
+	}
+	
+	function changeW(bDown){
+		
+		if(bDown){
+			oDiv.style.width = oDiv.offsetWidth + 10 + "px";
+		} else {
+			oDiv.style.width = oDiv.offsetWidth - 10 + "px";
+		}	
+	}
+	
+	addMouseWheel(oDiv,function (bDown){
+		
+		if(bDown){
+			oDiv.style.width = oDiv.offsetWidth + 10 + "px";
+		} else {
+			oDiv.style.width = oDiv.offsetWidth - 10 + "px";
+		}	
+	});
+	
+	
+	function addMouseWheel(obj,fn){
+		//DOMMouseScroll  ff
+		if(window.navigator.userAgent.toLowerCase().indexOf("firefox") != -1){
+			obj.addEventListener("DOMMouseScroll",fnWheel,false);
+		} else {
+			//onmousewheel ie chrome
+			obj.onmousewheel = fnWheel;
+		}
+		
+		function fnWheel(ev){
+			var oEvent = ev || event;
+			var bDown = true;//下为正
+			//ie  chrome  wheelDelta   
+			if(oEvent.wheelDelta){
+				bDown = oEvent.wheelDelta > 0 ? false : true;
+			} else {
+				bDown = oEvent.detail > 0 ? true : false;
+			}
+			
+			fn(bDown);
+			
+		}/* end fn fnWheel */
+	}
+		
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

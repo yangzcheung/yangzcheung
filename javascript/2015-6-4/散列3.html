@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+var arr=[];
+arr.length=10000;
+
+var t=new Date().getTime();
+
+for(var j=0;j<1000;j++)
+{
+	for(var i=0;i<10000;i++)
+	{
+		var n=Math.floor(Math.random()*10000);
+
+		hash_add(n);
+	}
+	for(var i=0;i<10000;i++)
+	{
+		var n=Math.floor(Math.random()*10000);
+
+		hash_find(n);
+	}
+}
+
+alert(new Date().getTime()-t);
+
+//散列——hash(哈希)
+function hash_add(n)
+{
+	//1.找位置
+	var pos=n%arr.length;
+
+	if(!arr[pos])	//空的：住进去
+	{
+		arr[pos]=n;
+	}
+	else
+	{
+		while(arr[pos])
+		{
+			if(arr[pos]==n)
+				return;
+
+			pos++;
+			if(pos==arr.length)
+				pos=0;
+		}
+
+		arr[pos]=n;
+	}
+}
+
+function hash_find(n)
+{
+	var pos=n%arr.length;
+
+	if(!arr[pos])
+	{
+		return false;
+	}
+	else
+	{
+		while(arr[pos])
+		{
+			if(arr[pos]==n)
+				return true;
+
+			pos++;
+			if(pos==arr.length)
+				pos=0;
+		}
+
+		return false;
+	}
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

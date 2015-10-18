@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+
+<script src="jquery-1.7.2.js"></script>
+<script src="jquery.myradio.js"></script>
+<script>
+
+var added = true;
+window.onload = function(){
+	$("#form1 input[name=sex]").myRadio();
+	$("#form1 input[name=city]").myRadio();
+};
+
+</script>
+</head>
+
+<body>
+
+<form id="form1" action="http://www.zhinengshe.com/">
+    <input type="radio"  name="sex" value="male"/>男
+    <input type="radio"  name="sex" value="female"/>女
+    <input type="radio"  name="sex" value="yao"/>妖
+  <br />
+    <input type="radio"  name="city" value="bj"/>北京
+    <input type="radio"  name="city" value="sh"/>上海
+    <input type="radio"  name="city" value="sz"/>深圳
+    <br />
+    <input type="submit" />
+</form>
+</body>
+</html>

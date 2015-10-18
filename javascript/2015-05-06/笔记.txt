@@ -1,0 +1,121 @@
+
+var oEvent = ev || event
+ev 高级浏览器  ie9+
+event ie系 chrome
+
+oEvent.clientX/Y 可视区的坐标 + scrollTop/Left
+
+
+oEvent.keyCode
+
+a-z：65-90
+0-9：48-57
+enter：13
+backspace:8
+方向：37- 40
+空格：32
+f12:123
+
+
+冒泡：
+oEvent.cancelBubble = true;
+
+默认事件：系统自带的  return false;
+
+捕获：obj.setCapture();
+释放捕获：obj.releaseCapture();
+
+obj.cloneNode(true/false)
+
+碰撞检测：判断没有碰到的情况 4种
+
+
+---------------------------------------------
+
+事件绑定：一个元素一个事件 添加多个函数
+
+//高级浏览器 ie9+
+addEventListener(事件名 不带on,函数、匿名函数，false);
+
+removeEventListener(事件名 不带on,函数、匿名函数，false);
+
+
+
+//低级浏览器  ie10-
+attachEvent(事件名带on,函数、匿名函数);
+detachEvent(事件名带on,函数、匿名函数);
+
+事件流： 冒泡 + 事件捕获（事件下沉）
+false：冒泡
+true:事件捕获
+
+事件捕获 99.99%没用！
+0.01% 有用！ 面试！
+
+
+解除绑定：  匿名函数不能解绑
+
+阻止默认事件：
+addEventListener();  return false失效 
+
+oEvent.preventDefault();  高级浏览器才有
+
+低级 return false;
+
+-----------------------------------------------
+this：当前事件发生的对象
+
+this常见错误：window
+1 定时器
+2 attachEvent
+3 套了一层
+4 行间
+
+---------------------------------------
+
+鼠标滚轮事件：
+
+DOMMouseScroll ff  dom事件必须通过绑定！
+
+   detail
+
+   上 -3 下 3
+
+onmousewheel  ie chrome
+
+    wheelDelta
+   上 120 下 -120
+   
+
+---------------------------------------
+
+ready事件  document
+
+DOMContentLoaded  高级浏览器
+onreadystatechange  低级浏览器  全兼容
+
+document.readyState [interactive,complete]
+
+interactive 正在渲染
+complete 渲染完成
+
+---------------------------------------
+
+统计文字：
+onkeydown
+onkeyup
+oninput 高级浏览器 ie9
+onpropertychange 低级
+
+解决方案： 定时器
+
+---------------------------------------
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+
+div{  width:200px; height:30px; background:red; margin:10px;}
+</style>
+<script src="addReady.js"></script>
+<script>
+
+var timer = null;
+function move(obj,iTarget,time){
+		
+	var start = obj.offsetWidth;
+	 
+	var dis = iTarget - start;
+	 
+	var count = Math.round(time/30);
+	var n = 0;
+	
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		n++;
+		
+		obj.style.width = start + dis/count*n +　"px";
+		
+		if(n == count){
+			clearInterval(obj.timer);
+		}
+	},30);
+}
+$(function(){
+	
+	var aDiv = document.getElementsByTagName("div");
+	
+	
+	for(var i = 0; i < aDiv.length; i++){
+		
+		aDiv[i].timer = null;
+		aDiv[i].onmouseover = function(){
+			move(this,400,1000);	
+		};
+		
+		aDiv[i].onmouseout = function(){
+			move(this,200,1000);	
+		};
+	}
+		
+});
+</script>
+</head>
+
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

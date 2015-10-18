@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+li {width:400px; height:30px; margin:10px; background:yellow;}
+</style>
+<script src="zQuery.js"></script>
+<script>
+$(function (){
+	$('#btn1').mouseover(function (){
+		$(this).css('background', 'red');
+	});
+	$('#btn1').mouseout(function (){
+		$(this).css('background', '');
+	});
+});
+</script>
+</head>
+
+<body>
+<input type="button" id="btn1" value="aaaa" />
+</body>
+</html>

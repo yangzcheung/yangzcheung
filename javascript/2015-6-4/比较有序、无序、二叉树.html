@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+//二叉树
+var root=null;	//根节点
+
+function bst_add(node, n)
+{
+	if(root==null)	//第一个
+	{
+		root={value: n, l: null, r: null};
+	}
+	else
+	{
+		if(node.value==n)		//重复了
+		{
+			return;
+		}
+		else if(node.value<n)	//右边
+		{
+			if(node.r==null)	//好事：放上去
+			{
+				node.r={value: n, l: null, r: null};
+			}
+			else
+			{
+				bst_add(node.r, n);
+			}
+		}
+		else					//左边
+		{
+			if(node.l==null)	//放进去
+			{
+				node.l={value: n, l: null, r: null};
+			}
+			else
+			{
+				bst_add(node.l, n);
+			}
+		}
+	}
+}
+
+function bst_find(node, n)
+{
+	if(root==null)
+	{
+		return false;
+	}
+	else
+	{
+		if(node.value==n)
+		{
+			return true;
+		}
+		else if(node.value<n)	//右
+		{
+			if(node.r==null)
+			{
+				return false;
+			}
+			else
+			{
+				return bst_find(node.r, n);
+			}
+		}
+		else					//左
+		{
+			if(node.l==null)
+			{
+				return false;
+			}
+			else
+			{
+				return bst_find(node.l, n);
+			}
+		}
+	}
+}
+
+//有序数组
+var arr1=[];
+
+function arr_add(n)
+{
+	if(arr_find(n, 0, arr1.length-1)==false)
+	{
+		arr1.push(n);
+
+		arr1.sort(function (n1, n2){
+			return n1-n2;
+		});
+	}
+}
+
+function arr_find(n, s, e)
+{
+	if(s>e)
+		return false;
+	else if(s==e)
+	{
+		if(arr1[s]==n)
+			return true;
+		else
+			return false;
+	}
+
+	var c=Math.floor((s+e)/2);
+
+	if(arr1[c]==n)
+	{
+		return true;
+	}
+	else if(arr1[c]<n)	//右
+	{
+		return arr_find(n, c+1, e);
+	}
+	else				//左
+	{
+		return  arr_find(n, s, c-1);
+	}
+}
+
+//无序数组
+var arr2=[];
+
+function arr_add2(n)
+{
+	if(arr_find2(n)==false)
+	{
+		arr2.push(n);
+	}
+}
+
+function arr_find2(n)
+{
+	for(var i=0;i<arr2.length;i++)
+	{
+		if(arr2[i]==n)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+//测试========================
+
+var t=new Date().getTime();
+
+//添加
+for(i=0;i<1000000;i++)
+{
+	var n=Math.floor(Math.random()*100000);
+
+	bst_add(root, n);			//二叉树：850
+	//arr_add(n);				//有序：15000000000
+	//arr_add2(n);				//无序：290000000
+}
+
+//查找
+for(i=0;i<1000000;i++)
+{
+	var n=Math.floor(Math.random()*100000);
+
+	bst_find(root, n);
+	//arr_find(n, 0, arr1.length-1);
+	//arr_find2(n);
+}
+
+alert(new Date().getTime()-t);
+</script>
+</head>
+
+<body>
+</body>
+</html>

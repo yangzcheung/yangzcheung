@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ display:none;width:200px; height:200px; background:#ccc;}
+</style>
+<script>
+window.onload = function(){
+	
+	var oBtn = document.getElementById("btn1");
+	var oDiv = document.getElementById("div1");
+	oBtn.onclick = function(ev){
+		var oEvent = ev ||　event;
+		oDiv.style.display = "block";
+		alert("a");	
+		
+		
+		oEvent.cancelBubble = true;
+	};
+		
+		
+	document.onclick = function(){
+		oDiv.style.display = "none";
+		alert("b");		
+	};
+};
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="aaaa"/>
+<div id="div1" >
+	
+</div>
+
+</body>
+</html>

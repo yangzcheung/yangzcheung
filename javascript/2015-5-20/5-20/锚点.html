@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script>
+window.onload=function ()
+{
+	var oBtn1=document.getElementById('btn1');
+	var oBtn2=document.getElementById('btn2');
+	
+	oBtn1.onclick=function ()
+	{
+		location.hash='a=12';
+	};
+	
+	oBtn2.onclick=function ()
+	{
+		alert(location.hash);
+	};
+};
+</script>
+</head>
+
+<body>
+<input type="text" value="aaa" />
+<input type="button" value="设置锚点" id="btn1" />
+<input type="button" value="获取锚点" id="btn2" />
+</body>
+</html>
+
+
+
+

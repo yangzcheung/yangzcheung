@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+
+
+$(function() {//ready
+   $("ul li:has(a)").css("background","yellow");// 标签
+   $("ul li:contains(a)").css("background","red");// 内容
+  
+});
+
+
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>aaaa</li>
+	<li>
+    	<a href="javascript:;">链接</a>
+    </li>
+	<li></li>
+	<li>aaaaa</li>
+	 
+</ul>
+</body>
+</html>

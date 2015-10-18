@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+div{float:left; margin:20px;}
+#div1{width:200px; height:200px; background:red;}
+#div2{width:200px; height:400px; background:green; display:none;}
+</style>
+<script src="jquery-1.7.2.js"></script>
+<script>
+
+window.onload = function(){
+	
+	var $oDiv1 = $("#div1");
+	var $oDiv2 = $("#div2");
+
+	var timer = null;
+	
+	$("#div1,#div2").hover(function(){
+		clearTimeout(timer);
+		$oDiv2.show();
+	},function(){
+		timer = setTimeout(function(){
+			$oDiv2.hide();	
+		},500);
+	});
+	
+};
+
+
+</script>
+</head>
+
+<body>
+
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+</html>

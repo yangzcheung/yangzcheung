@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="ajax5.js"></script>
+<script>
+ajax({
+	url:		'2.php',
+	json:		{a: 12, b: 5},
+	type:		'post',
+	timeout:	2000,
+	fnSucc:		function (str){
+		alert(str);
+	},
+	fnFaild:	function (){
+		alert('失败');
+	}
+});
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

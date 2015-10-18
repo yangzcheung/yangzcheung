@@ -1,0 +1,14 @@
+<!doctype html>
+<html ng-app="">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="angular.js"></script>
+</head>
+
+<body ng-init="arr=[{name: 0, value: 12}, {name: 1, value: 5}, {name: 2, value: 8}];">
+<ul>
+	<li ng-repeat="item in arr">{{item.name}}={{item.value}}</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,252 @@
+继承
+1.属性	call
+2.方法	new
+
+MVC——分工、分离
+	angular
+
+框架——angular
+	大、主要、死板
+	*限制你
+库——jQuery
+	小、次要、灵活
+
+-----------------------------------------------------
+
+PHP
+
+获取数据：
+$_GET
+$_POST
+
+-----------------------------------------------------
+
+数据库：
+
+库——存表
+表——存数据
+
+库 > 表 > 数据(行、列)
+
+-----------------------------------------------------
+
+SELECT * FROM user_table;
+
+-----------------------------------------------------
+
+接口：
+user.php?act=reg|login&user=xxx&pass=xxx
+{ok: true/false, msg: "原因"}
+
+定义接口——长什么样
+实现接口——写程序
+
+-----------------------------------------------------
+
+SELECT * FROM user_table;
+
+SELECT * FROM user_table WHERE 条件;
+
+
+SELECT * FROM user_table WHERE age>18;
+SELECT * FROM user_table WHERE math<60;
+SELECT * FROM user_table WHERE name='blue';
+SELECT * FROM user_table WHERE age>18 AND math<60;
+
+-----------------------------------------------------
+
+增——添加
+
+INSERT INTO 表 VALUES('值', '', '', ...)
+
+INSERT INTO user_table VALUES('xiaohong', '111666')
+
+-----------------------------------------------------
+
+SELECT * FROM user_table LIMIT 起点,个数;
+
+一页10个
+
+第1页：SELECT * FROM user_table LIMIT 0,10;
+第2页：SELECT * FROM user_table LIMIT 10,10;
+第3页：SELECT * FROM user_table LIMIT 20,10;
+
+
+第n页：SELECT * FROM user_table LIMIT (n-1)*10,10;
+
+
+flow.php?page=1
+[{src: 'xxx'}, {xxx}, {}, ....]
+
+-----------------------------------------------------
+
+事件、定时器以外的任何东西都不行
+
+-----------------------------------------------------
+
+HTML5+CSS3：
+非常重要
+
+HTML4+CSS2
+
+HTML5不兼容——PC
+移动端——相当兼容
+	手机、pad、watch、眼镜、电视
+	移动端>PC
+
+误会：
+1.HTML5不能脱离HTML4
+2.HTML5只能做网页
+3.手机上必须用HTML5(不能用HTML4)
+
+总结：HTML5很厉害，没有也行
+
+
+
+
+原生APP	成本特别高(工资、时间、沟通、市场机会)
+webApp	兼容起来方便
+
+原生APP——性能高	游戏、大型图表
+webAPP——性能一般	大部分日常应用
+
+-----------------------------------------------------
+
+HTML5、CSS3新特性
+炫、酷、表单验证(?)、标签、SEO、本地存储、缓存
+
+HTML5：
+新的文档头、编码
+
+1.新的标签
+
+header、footer、article、section、aside、canvas、time、video、audio、nav、menu、...
+
+有用的：
+canvas、video、audio(少)
+
+video——mp4
+
+“没用”的——语义化：
+header、footer、article...
+
+语义化——写代码方便、SEO
+
+HTML5新标签和SEO——有好处(中国以外)
+
+常用HTML5标签：
+header、footer、section、
+
+
+2.canvas——画布
+
+随便画
+
+3.表单
+
+新的type——好使
+表单校验——没人用
+
+4.本地存储
+
+cookie——存东西
+localStorage——存东西
+
+	cookie		localStorage
+容量	4K		5M
+方便	麻烦		方便
+	兼容		IE7+
+
+localStorage——		永久存储
+sessionStorage——	窗口关闭了，就没了
+
+sessionStorage	没用
+
+-----------------------------------------------------
+
+5.webSocket——通信
+
+webSocket：
+1.性能高		几十倍
+2.节约流量
+	ajax——单向
+	webSocket——双向
+3.实时性
+
+6.webWorker——多线程
+
+单线程——一次做一个事儿
+
+传统JS——单线程
+
+系统的性能发挥的更充分
+
+7.webGL
+
+canvas——2d/3d
+
+webGL——3D canvas
+
+8.webSQL：几乎没人用
+
+前台数据库——不安全
+
+选择器：
+
+
+-----------------------------------------------------
+
+CSS3：
+
+圆角、阴影、渐变、动画、transform
+
+-----------------------------------------------------
+
+transition:1s all ease;
+
+linear
+ease-in
+ease-out
+ease-in-out
+ease
+
+1.性能高
+2.方便
+3.什么都能变——数字
+4.跟JS无缝整合
+
+-----------------------------------------------------
+
+阴影：
+box-shadow:x偏移 y偏移 模糊范围 颜色
+text-shadow:x偏移 y偏移 模糊范围 颜色
+
+-----------------------------------------------------
+
+渐变：
+
+
+rgb
+
+-----------------------------------------------------
+
+transform
+1.rotate	旋转
+2.scale		缩放
+3.skew		扭曲
+4.translate	平移
+
+-----------------------------------------------------
+
+WebQQ、nodeJS、算法
+
+
+算法——武林秘籍
+前人的经验、步骤
+
+导论
+
+-----------------------------------------------------
+
+
+

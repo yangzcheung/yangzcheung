@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#div1 {width: 300px; height: 300px; border: 1px solid black; margin: 10px auto; border-radius: 50%; position: relative; box-shadow: 2px 2px 4px #666;}
+#div1 .hour {width:14px; height:80px; background: black; position: absolute; left: 50%; top: 50%; margin-left: -7px; margin-top: -80px; -webkit-transform-origin:center bottom;}
+#div1 .min {width:6px; height:120px; background: black; position: absolute; left: 50%; top: 50%; margin-left: -3px; margin-top: -120px; -webkit-transform-origin:center bottom;}
+#div1 .sec {width:2px; height:140px; background: black; position: absolute; left: 50%; top: 50%; margin-left: -1px; margin-top: -140px; -webkit-transform-origin:center bottom;}
+#div1 span.scaler {width:2px; height: 4px; background: black; position: absolute; left:50%; top: 0; margin-left:-1px; -webkit-transform-origin:1px 150px;}
+#div1 span.big_scaler {width:4px; height: 8px; background: black; position: absolute; left:50%; top: 0; margin-left:-2px; -webkit-transform-origin:2px 150px;}
+#div1 em {font-style: normal; position: absolute; left: 50%; width: 30px; margin-left: -15px; text-align: center; top: 8px;}
+#div1 .cap {width: 18px; height: 18px; background: #666; position: absolute; left: 50%; top: 50%; margin-left: -9px; margin-top: -9px; border-radius: 50%;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oHour=document.querySelector('#div1 .hour');
+	var oMin=document.querySelector('#div1 .min');
+	var oSec=document.querySelector('#div1 .sec');
+
+	function tick()
+	{
+		var oDate=new Date();
+
+		oHour.style.WebkitTransform='rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';
+		oMin.style.WebkitTransform='rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)';
+		oSec.style.WebkitTransform='rotate('+oDate.getSeconds()*6+'deg)';
+	}
+	setInterval(tick, 1000);
+	tick();
+
+	//刻度
+	for(var i=0;i<60;i++)
+	{
+		var oS=document.createElement('span');
+
+		if(i%5==0)
+		{
+			oS.className='big_scaler';
+			if(i==0)
+			{
+				oS.innerHTML='<em>12</em>';
+			}
+			else
+			{
+				oS.innerHTML='<em>'+i/5+'</em>';
+			}
+			oS.children[0].style.WebkitTransform='rotate(-'+6*i+'deg)';
+		}
+		else
+		{
+			oS.className='scaler';
+		}
+
+		oS.style.WebkitTransform='rotate('+6*i+'deg)';
+		
+		oDiv.appendChild(oS);
+	}
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<div class="hour"></div>
+	<div class="min"></div>
+	<div class="sec"></div>
+	<div class="cap"></div>
+</div>
+</body>
+</html>

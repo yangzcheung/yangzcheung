@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#box{ position:absolute;left:300px;top:200px;width:400px; height:300px; background:#ccc;}
+#box .lt{ position:absolute;left:0;top:0;width:20px; height:20px; background:red; z-index:3;}
+#box .rt{ position:absolute;right:0;top:0;width:20px; height:20px; background:red;z-index:3;}
+#box .rb{ position:absolute;right:0;bottom:0;width:20px; height:20px; background:red;z-index:3;}
+#box .lb{ position:absolute;left:0;bottom:0;width:20px; height:20px; background:red;z-index:3;}
+#box .l{ position:absolute;left:0;top:0;width:20px; height:100%; background:green;}
+#box .t{ position:absolute;left:0;top:0;width:100%; height:20px; background:green;}
+#box .r{ position:absolute;right:0;top:0;width:20px; height:100%; background:green;}
+#box .b{ position:absolute;left:0;bottom:0;width:100%; height:20px; background:green;}
+</style>
+<script>
+
+window.onload = function(){
+	 var oBox = document.getElementById("box");
+	 var aDiv = oBox.children;
+	 
+	 for(var i = 0; i < aDiv.length; i++){
+		 darg(aDiv[i]);
+	 }
+	  
+	 
+	 function darg(oDiv){	
+	 
+		 oDiv.onmousedown = function(ev){
+			 var oEvent = ev || event;
+			  
+			 var oldX = oEvent.clientX;
+			 var oldW = oBox.offsetWidth;
+			 var oldLeft = oBox.offsetLeft;
+			 
+			 var oldY = oEvent.clientY;
+			 var oldH = oBox.offsetHeight;
+			 var oldTop = oBox.offsetTop;
+			 
+			 document.onmousemove = function(ev){
+				 var oEvent = ev || event;
+				 
+				 if(oDiv.className.indexOf("l") != -1){			 
+					 //左
+					 var disX = oEvent.clientX - oldX;//负数
+					 if((oldW-disX)>=40){
+					 oBox.style.width = oldW - disX + "px";
+					 oBox.style.left = oldLeft + disX + "px";
+					 }
+				 }
+				 if(oDiv.className.indexOf("t") != -1){
+					 //上
+					 
+					 var disY = oEvent.clientY - oldY;//负数
+					 var h=oldH - disY
+					 if(h<40){
+						 h=40;
+					 }
+					 oBox.style.height = h + "px";
+					 oBox.style.top = oldTop + disY + "px";
+				 }
+				 if(oDiv.className.indexOf("r") != -1){
+					 //右
+					 var disX = oEvent.clientX - oldX;
+					 if(oldW + disX>40){
+					 oBox.style.width = oldW + disX + "px";
+					 }
+				 }
+				 if(oDiv.className.indexOf("b") != -1){
+					 //下
+					 var disY = oEvent.clientY - oldY;
+					 if(oldH + disY>40){
+					 oBox.style.height = oldH + disY + "px";
+					 }
+				 }
+				 
+			 }; 
+			 document.onmouseup = function(){
+				 document.onmousemove = null;
+				 document.onmouseup = null;	 
+				 oDiv.releaseCapture && oDiv.releaseCapture(); 
+			 };
+			 oDiv.setCapture && oDiv.setCapture();
+			 return false;
+		 };
+	 
+	 }
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div class="lt"></div>
+	<div class="rt"></div>
+	<div class="rb"></div>
+	<div class="lb"></div>
+	<div class="l"></div>
+	<div class="t"></div>
+	<div class="r"></div>
+	<div class="b"></div>
+</div>
+
+</body>
+</html>

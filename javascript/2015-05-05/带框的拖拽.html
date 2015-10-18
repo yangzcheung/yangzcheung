@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ position:absolute;left:0;top:0; width:200px; height:200px; background:red;}
+.box{ position:absolute;left:0;top:0;border:4px dashed #000;}
+</style>
+<script>
+
+window.onload = function(){
+	
+	var oDiv = document.getElementById("div1");
+	
+	oDiv.onmousedown = function(ev){
+		var oEvent = ev || event;
+		
+		var disX = oEvent.clientX - oDiv.offsetLeft;
+		var disY = oEvent.clientY - oDiv.offsetTop;
+		
+		var oNewDiv = document.createElement("div");
+		oNewDiv.style.width = oDiv.offsetWidth - 8 + "px";
+		oNewDiv.style.height = oDiv.offsetHeight - 8 + "px";
+		
+		oNewDiv.style.left = oDiv.offsetLeft + "px";
+		oNewDiv.style.top = oDiv.offsetTop + "px";
+		oNewDiv.className = "box";
+		document.body.appendChild(oNewDiv);
+		
+		document.onmousemove = function(ev){
+			var oEvent = ev || event;
+			oNewDiv.style.left = oEvent.clientX - disX + "px";
+			oNewDiv.style.top = oEvent.clientY - disY + "px";
+		};
+		
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			oNewDiv.releaseCapture && oNewDiv.releaseCapture();
+			
+			oDiv.style.left = oNewDiv.offsetLeft + "px";
+			oDiv.style.top = oNewDiv.offsetTop + "px";
+			
+			document.body.removeChild(oNewDiv);
+		};
+		
+		oNewDiv.setCapture && oNewDiv.setCapture();
+		return false;
+		
+	};
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

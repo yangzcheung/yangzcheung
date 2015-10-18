@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function Person(name, age)
+{
+	this.name=name;
+	this.age=age;
+}
+
+Person.prototype.showName=function ()
+{
+	alert('我叫：'+this.name);
+};
+Person.prototype.showAge=function ()
+{
+	alert(this.age);
+};
+
+//-------------------------------------------
+
+//子类>=父类
+function Worker(name, age, job)
+{
+	//继承父级的属性
+	Person.call(this, name, age);
+	
+	this.job=job;
+}
+
+//继承父级的方法——原型
+Worker.prototype=new Person();
+
+Worker.prototype.showJob=function ()
+{
+	alert(this.job);
+};
+
+var oP=new Person('张三', 25);
+var oW=new Worker('blue', 18, '打杂的');
+
+//OK
+/*oW.showName();
+oW.showAge();
+oW.showJob();*/
+
+//OK
+//alert(oP.showJob);
+
+//OK
+//Person.prototype.a=12;
+//alert(oW.a);
+
+//为什么？
+//alert(oW.showName==Worker.prototype.showName);
+//alert(Worker.prototype.showName==new Person().showName);
+//alert(new Person().showName==Person.prototype.showName);
+alert(oW.showName==Person.prototype.showName);
+</script>
+</head>
+
+<body>
+</body>
+</html>

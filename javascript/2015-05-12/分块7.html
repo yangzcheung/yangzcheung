@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+#div1{ position:relative;width:700px; height:400px; background:url(img/1.jpg) no-repeat; margin:50px auto;}
+#div1 span{ position:absolute;left:0;top:0; width:100px; height:100px; background:url(img/0.jpg) no-repeat; 
+background-position:0 0; opacity:1; line-height:100px; text-align:center; font-size:30px; color:#fff;
+}
+</style>
+<script src="move.js"></script>
+<script>
+
+window.onload = function(){
+	
+	var oDiv = document.getElementById("div1");
+	var oBtn = document.getElementById("btn1");
+	
+	var R = 4;
+	var C = 7;
+	for(var r = 0; r < R; r++){
+		for(var c = 0; c < C; c++){
+			var oSpan = document.createElement("span");
+			oDiv.appendChild(oSpan);
+			oSpan.style.width = oDiv.offsetWidth/C +　"px";
+			oSpan.style.height = oDiv.offsetHeight/R +　"px";
+			
+			oSpan.style.left = oSpan.offsetWidth*c + "px";
+			oSpan.style.top  = oSpan.offsetHeight*r + "px";
+			oSpan.style.backgroundPosition  = -oSpan.offsetLeft + "px -" + oSpan.offsetTop + "px";
+			oSpan.r = r;
+			oSpan.c = c;
+			//oSpan.innerHTML =  r + "," + c;
+			
+		}
+	}
+	
+	
+	var aSpan = oDiv.children;
+	var len = aSpan.length;
+	
+	var timer = null;
+	var iNow = 0;
+	
+	var bReady = true;
+	//下一张
+	oBtn.onclick = function(){
+		if(!bReady){
+			return ;
+		}
+		bReady = false;
+		var count = 0;
+		for(var i = 0; i < len; i++){
+			aSpan[i].style.opacity = "1";
+			aSpan[i].style.backgroundImage = "url(img/"+iNow+".jpg)";
+		}
+		
+		iNow++;
+		
+		if(iNow == 3){
+			iNow = 0;
+		}
+		
+		oDiv.style.backgroundImage = "url(img/"+iNow+".jpg)";
+		
+		for(var i = 0; i < len; i++){
+			(function(index){
+				setTimeout(function(){
+					
+					move(aSpan[index],{opacity:0},{complete:function(){
+						count++
+						if(count == len){
+							//alert(1);
+							bReady = true;
+						}
+					}});
+					
+				},1000*Math.random());
+				
+			})(i);
+			/*
+			1  setTimeout  0  0 
+			2 8 setTimeout  2  2*60 120
+			3 9 15 setTimeout 3     180
+			4 10 16 22 setTimeout    240
+			，，，，，，，，，
+			*/
+			
+		}
+	};
+	
+};
+
+</script>
+</head>
+
+<body>
+<input type="button" value="下一张" id="btn1" />
+<div id="div1">
+</div>
+
+</body>
+</html>

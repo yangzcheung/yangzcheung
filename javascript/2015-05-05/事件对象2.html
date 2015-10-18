@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+
+<script>
+
+window.onload = function(){
+	
+	document.onclick = function(ev){
+		/*if(ev){
+			//ev高级浏览器
+			alert(ev.clientX );
+		} else {
+			//ie chrome
+			alert(event.clientX + "," + event.clientY);
+		}*/
+		
+		
+		var oEvent = ev || event;
+		
+		alert(oEvent.clientX + "," + oEvent.clientY);
+		
+		
+		
+	};
+
+};
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

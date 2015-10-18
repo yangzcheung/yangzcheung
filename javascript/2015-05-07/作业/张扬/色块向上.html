@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+#ul1{overflow:hidden;}
+#ul1 li { position:relative;width:80px; height:40px; margin:20px; float:left; border:1px solid #000; overflow:hidden;}
+#ul1 li span, #ul1 li div { position:absolute; left:0; top:0;width:80px; height:40px; line-height:40px; text-align:center;}
+#ul1 li div { z-index:-1; opacity:0.2; filter:alpha(filter:20); top:40px; display:none;}
+</style>
+<script src="move4.js"></script>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById('ul1');
+	var aDiv=oUl.getElementsByTagName('div');
+	var aLi=oUl.getElementsByTagName('li');
+	for(var i=0;i<aDiv.length;i++){
+		var r=parseInt(Math.random()*256);
+		var g=parseInt(Math.random()*256);
+		var b=parseInt(Math.random()*256);
+		aDiv[i].style.backgroundColor="rgb("+r+","+g+","+b+")";
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].onmouseover=function(){
+//			for(var i=0;i<aLi.length;i++){
+//				move(aLi[i].children[1],{top:40});
+//			}
+			this.children[1].style.display="block";
+			move(this.children[1],{top:0,duration:2000});
+		};
+		aLi[i].onmouseout=function(){
+			move(this.children[1],{top:40});
+		};
+
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>
+    	<span>第一块</span>
+        <div></div>
+    </li>
+	<li>
+    	<span>第二块</span>
+        <div></div>
+    </li>
+	<li>
+    	<span>第三块</span>
+        <div></div>
+    </li>
+	<li>
+    	<span>第四块</span>
+        <div></div>
+    </li>
+</ul>
+</body>
+</html>

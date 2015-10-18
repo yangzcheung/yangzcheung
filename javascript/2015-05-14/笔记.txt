@@ -1,0 +1,187 @@
+
+slideDown/Up  ×
+fadeIn/Out    × 
+
+$obj.stop().animate();
+
+选择器：
+1基本
+2属性 
+3伪类
+first  一个
+last
+firt-child  一组
+
+eq
+gt
+lt
+odd
+even
+has       判断标签
+contains  判断内容
+
+4群组
+
+$("#div1,#div2....");
+var $oDiv1 ;
+var $oDiv2 ;
+$($oDiv1,容器);
+
+--------------------------------
+
+css(name)  获取
+css(name,value) 设置
+css(json);      批量设置
+
+getStyle(obj,name)
+setSTyle(obj,name,value)
+setSTyle(obj,json)
+
+
+
+attr(name)
+attr(name,value)
+attr(json);
+
+
+html(); 获取
+html(value);设置
+
+width();      width
+innerWidth(); width + padding
+outerWidth(); 盒模型
+
+width(); 
+width(value); 
+
+css("width",value);
+
+
+position();  {left:xxx,top：xxx} offsetLeft/Top
+offset();{left:xxx,top：xxx}   getPos(obj);
+
+$.trim();  去除字符串首尾空格
+$.browser.webkit/msie/mozilla
+$.browser.version
+
+事件： jq所有的事件 都是绑定
+
+
+$obj.bind(sEv,fn);     on
+$obj.unbind(sEv,fn);   off
+
+委托
+$obj.live(sEv,fn); delegator    on   
+$obj.die(sEv,fn);  undelegator
+                   js                  jq
+ 冒泡   oEvent.cancelBubble = true;  reutrn false;   ev.stopPropagation();
+ 
+ 默认事件   return false;            reutrn false;   ev.preventDefault();
+           
+            oEvent.preventDefault();
+
+
+DOM:
+
+创建 var $obj = $("<tagname></tagname>");
+
+添加 
+
+$obj.appendTo(父级); 末尾
+$obj.prependTo(父级); 第一位
+
+$obj.insertBefore(谁);
+$obj.insertAfter(谁);
+
+
+删除
+
+$obj.remove();
+
+obj.parentNode.removeChild(obj);
+
+
+节点：
+
+父节点：$obj.parent();
+子节点：$obj.children();
+兄弟节点：$obj.siblings();
+上一个：$obj.prev();
+下一个：$obj.next();
+
+---------------------------------------
+
+组件：
+
+$.fn.组件名 = function(){
+   this  jq对象
+
+};
+$("ul li");
+
+$.fn.extend(json);
+---------------------------------------
+WAMP | XAMPP
+
+站点名称：      seajs
+本地站点文件夹：  D:\wamp\www\seajs\
+
+服务器：
+服务器名称： seajs
+连接方法：本地/网络
+服务器文件夹：D:\wamp\www\seajs\
+Web Url :http://localhost/seajs/
+
+点击保存  取消【远程】 选择 【本地】
+
+---------------------------------------------
+seajs
+
+1 帮你引入js
+2 "自动"解决依赖
+
+  a.js  --> b.js --> c.js  ---> d.js
+
+
+localhost:
+
+如何使用：
+1 如何定义一个模块 
+2 如何使用一个模块
+
+
+模块: 一个js文件就是一个模块
+
+----------------------------------------
+
+1 如何定义模块
+define(function(require,exprots,module){
+require 请求一个模块
+exprots  输出 一个模块
+module 批量导出
+});
+
+2 使用模块
+seajs.use(模块名称/[多个模块]，function(mod1,mod2...){
+
+});
+
+-----------------------------------
+
+输出模块：
+1 return 不推荐
+2 exports  
+3 module.exports  module优先
+
+引用模块
+1 use     html --> js
+2 require  js --> js
+
+
+require.js  请求模块 必须是一个数组
+
+require([mod.js...],function(mod1,mod2.....){
+
+});
+
+
