@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script>
+$.fn.click = function(fn){
+	this.onclick = fn;
+};
+
+
+
+function _addEv(name){
+	$.fn[name]=function (fn){
+		for(var i=0;i<this.elements.length;i++){
+			addEvent(this.elements[i], name, fn);
+		}
+	};
+}
+var arr=['click', 'mouseover', 'mouseout', 'mousedown', 'mousemove', 'mouseup', 'keydown', 'keyup', 'focus', 'blur', 'change', 'readystatechange', 'load', 'error', 'reset', 'submit', 'scroll', 'resize', 'contextmenu', 'dblclick'];
+for(var i=0;i<arr.length;i++){
+	_addEv(arr[i]);
+}
+
+
+
+$.fn.on = function(sEv,fn){
+	if(this.addEventListener){
+		this.addEventListener(sEv,fn,false);
+	}else{
+		this.attachEvent("on"+sEv,fn);
+	}
+	return this;
+};
+$.fn.off = function(){sEv,fn}{
+	if(this.addEventListener){
+		this.removeEventListener(sEv,fn,false);
+	}else{
+		this.detachEvent("on"+sEv,fn);
+	}
+	return this;
+};
+$.fn.hover = function(over,out){
+	this.onmouseenter = over;
+	this.onmouseleaver = out;
+	return this;
+}
+</script>
+</head>
+<body>
+	
+</body>
+</html>

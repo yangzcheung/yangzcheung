@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+#div1{width:200px; height:200px; background:yellow;}
+#div1 h2{ height:30px; background:green;}
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	oDiv.onmouseover = function(ev){
+		//var oEvent = ev || event;
+		// 来源 fromElement relatedTarget
+		//alert(oEvent.fromElement.tagName);
+		//contains
+		
+		//var oFrom = oEvent.fromElement || oEvent.relatedTarget;
+		
+		//alert(oEvent.relatedTarget);
+		
+		//if(oDiv.contains(oFrom)){
+		//	return;	
+		//}
+		
+		alert("移入");
+		
+		
+	};
+
+};
+</script>
+</head>
+
+<body>
+
+<div id="div1">
+	<h2>h222222</h2>
+</div>
+
+</body>
+</html>

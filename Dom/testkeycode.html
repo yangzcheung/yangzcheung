@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+document.onkeydown = function(ev){
+	var oEvent = ev || event;
+	
+	/*
+      a-z: 65 -- 90
+	  0-9: 48 -- 57
+	  回车：13
+	  空格:32
+	  左37上38右39下40
+	  backspace:8
+	  
+	*/
+	if(oEvent.ctrlKey){
+		alert('ctrl')
+	}
+	//alert(oEvent.keyCode);
+	
+};
+</script>
+</head>
+<body>
+	
+</body>
+</html>
