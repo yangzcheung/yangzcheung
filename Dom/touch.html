@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+</style>
+<script>
+window.onload = function(){
+var startTime;
+var log = function (msg) {
+	console.log(new Date().getTime() - startTime);
+	console.log(msg);
+};
+var touchStart = function () {
+	startTime = new Date().getTime();
+	log('touchStart');
+};
+
+var touchEnd = function () {
+	log('touchEnd');
+};
+
+document.addEventListener('touchstart', touchStart);
+document.addEventListener('touchend', touchEnd);
+};
+</script>
+</head>
+<body>
+</body>
+</html>
